@@ -19,4 +19,5 @@ results = collection.query(
     # where={"metadata_field": "is_equal_to_this"}, # optional filter
     # where_document={"$contains":"search_string"}  # optional filter
 )
+
 print(results)
