@@ -1,4 +1,5 @@
 import chromadb
+
 # setup Chroma in-memory, for easy prototyping. Can add persistence easily!
 client = chromadb.Client()
 
