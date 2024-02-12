@@ -30,10 +30,12 @@ class Models:
             # for more inspiration look at:
             # https://huggingface.co/TheBloke/MPT-7B-Instruct-GGML/discussions/2
             model_id = model
-            llm = AutoModelForCausalLM.from_pretrained(model_id, hf=True)
-            tokenizer = AutoTokenizer.from_pretrained(model_id)
-            pipe = pipeline("text2text-generation", model=llm, tokenizer=tokenizer)
-            return pipe
+            llm = AutoModelForCausalLM.from_pretrained(model_id)
+            return llm
+            # llm = AutoModelForCausalLM.from_pretrained(model_id, hf=True)
+            # tokenizer = AutoTokenizer.from_pretrained(llm)
+            # pipe = pipeline("text2text-generation", model=llm, tokenizer=tokenizer)
+            # return pipe
             # let's just use the regular embeddings for now
             # embeddings = LlamaCppEmbeddings(model_path="models/llama-7b.ggmlv3.q4_0.bin")
         else:
