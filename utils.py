@@ -26,7 +26,7 @@ class Models:
                 },
             )
             return model
-        elif model == 'astral':
+        elif model == Models.MISTRAL:
             # for more inspiration look at:
             # https://huggingface.co/TheBloke/MPT-7B-Instruct-GGML/discussions/2
             model_id = model
@@ -36,3 +36,5 @@ class Models:
             return pipe
             # let's just use the regular embeddings for now
             # embeddings = LlamaCppEmbeddings(model_path="models/llama-7b.ggmlv3.q4_0.bin")
+        else:
+            raise Exception(f'model {model} not supported')
