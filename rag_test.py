@@ -7,7 +7,7 @@ from langchain.docstore.document import Document
 from utils import CACHE_DIR, CHROMA_DIR,Models
 
 # MODEL = Models.FLAN_LARGE
-MODEL = Models.MISTRAL
+MODEL = Models.FLAN_LARGE
 
 # document = 'the first part of the name of this laptop is john' * 100 + 'the second part is atkins' * 100
 document = 'the name of the laptop is john doe'
@@ -22,7 +22,7 @@ embeddings = HuggingFaceEmbeddings(
 )  # Use a pre-cached model
 # Finally we make our Index using chromadb and the embeddings LLM
 chromadb_index = Chroma.from_documents(
-    texts, embeddings, persist_directory=CHROMA_DIR
+    texts, embeddings, # persist_directory=CHROMA_DIR, -- this is the persistent version
 )
 
 retriever = chromadb_index.as_retriever()
