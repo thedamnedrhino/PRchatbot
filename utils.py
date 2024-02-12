@@ -1,6 +1,6 @@
 import enum
 
-from langchain.llms import HuggingFacePipeline
+from langchain.llms import HuggingFacePipeline, CTransformers
 from ctransformers import AutoModelForCausalLM, AutoTokenizer
 from transformers import pipeline
 
@@ -30,7 +30,10 @@ class Models:
             # for more inspiration look at:
             # https://huggingface.co/TheBloke/MPT-7B-Instruct-GGML/discussions/2
             model_id = model
-            llm = AutoModelForCausalLM.from_pretrained(model_id)
+            # using ctransformers that doesn't work with the downstream langchain chain
+            # llm = AutoModelForCausalLM.from_pretrained(model_id)
+            # using the langchain imp. of ctransformers
+            llm = CTransformers(model=model_id)
             return llm
             # llm = AutoModelForCausalLM.from_pretrained(model_id, hf=True)
             # tokenizer = AutoTokenizer.from_pretrained(llm)
