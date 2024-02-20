@@ -18,7 +18,7 @@ def get_retriever(issues: bool = True):
     if issues:
         documents = get_issues()
     text_splitter = CharacterTextSplitter(chunk_size=250, chunk_overlap=10)
-    texts = text_splitter.split_documents([Document(d) for d in documents])
+    texts = text_splitter.split_documents(documents)
     # Now we'll create embeddings for our document so we can store it in a vector store and feed the data into an LLM. We'll use the sentence-transformers model for out embeddings. https://www.sbert.net/docs/pretrained_models.html#sentence-embedding-models/
     model_name = "sentence-transformers/all-MiniLM-L6-v2"
     embeddings = HuggingFaceEmbeddings(
@@ -35,7 +35,7 @@ def get_retriever(issues: bool = True):
     return retriever
 
 
-def get_issues():
+def get_issues() -> list[Document]:
     issues = get_issues_json()
     documents = []
     for issue in issues:
