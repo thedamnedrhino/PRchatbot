@@ -14,7 +14,9 @@ test_documents = [
 ]
 
 
-def get_retriever(documents: list[str] = None):
+def get_retriever(issues: bool = True):
+    if issues:
+        documents = get_issues()
     text_splitter = CharacterTextSplitter(chunk_size=250, chunk_overlap=10)
     texts = text_splitter.split_documents([Document(d) for d in documents])
     # Now we'll create embeddings for our document so we can store it in a vector store and feed the data into an LLM. We'll use the sentence-transformers model for out embeddings. https://www.sbert.net/docs/pretrained_models.html#sentence-embedding-models/
